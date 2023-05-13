@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>局部注册：</h1>
+        <p>只能在当前注册它的vue实例中使用</p>
+        <hr>
+        <my-component></my-component>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+    // 定义组件的模板
+    var Child = {
+      template: '<div style="background-color: antiquewhite;">局部组件</div>'
+    }
+
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                }
+            },
+            //局部注册组件  
+            components: {
+                // <my-component> 将只在父模板可用，一定要在实例上注册了才能在html文件中使用
+                'my-component': Child
+            }
+        });
+</script>

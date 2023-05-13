@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>全局注册：</h1>
+        <p>Vue.component('组件名称', { }) 第1个参数是标签名称，第2个参数是一个选项对象</p>
+        <p>全局组件注册后，任何vue实例都可以用</p>
+        <hr>
+        <!-- 2.组件使用 组件名称 是以HTML标签的形式使用  -->  
+        <my-component></my-component>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+    // 1.my-component 就是组件中自定义的标签名
+	Vue.component('my-component', {
+      template: '<div style="background-color: antiquewhite;">全局组件</div>'
+    })
+
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                }
+            }
+        });
+</script>

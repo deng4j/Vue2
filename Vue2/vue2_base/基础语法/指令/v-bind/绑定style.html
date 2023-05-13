@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <div v-bind:style="styleObject">绑定样式对象</div>
+        <hr>
+        <div v-bind:style="{ color: activeColor, fontSize: fontSize,background:'red' }">内联样式</div>
+        <hr>
+        <div v-bind:style="[styleObj1, styleObj2]">多个样式对象</div>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    styleObject: {
+                        color: 'green',
+                        fontSize: '30px',
+                        background:'red'
+                    },
+                    activeColor: 'green',
+   		            fontSize: "30px",
+                    styleObj1: {
+                        color: 'red'
+                    },
+                    styleObj2: {
+                        fontSize: '30px'
+                    }
+                }
+            },
+        });
+</script>

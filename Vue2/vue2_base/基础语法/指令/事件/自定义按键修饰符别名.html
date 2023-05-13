@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <p>预先定义了keycode 116（即F5）的别名为f5，因此在文字输入框中按下F5，会触发prompt方法</p>
+        <input type="text" v-on:keydown.f5="prompt()">
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                }
+            },
+            methods: {
+                prompt: function() {
+                    alert('我是 F5！');
+                }
+        }
+        });
+</script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>自定义局部指令：</h1>
+        <p>局部指令，需要定义在  directives 的选项   用法和全局用法一样</p>
+        <p>局部指令只能在当前组件里面使用</p>
+        <p>当全局指令和局部指令同名时以局部指令为准</p>
+        <hr>
+        <input type="text" v-color='colorObj'>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    colorObj:{
+                        color: 'red'
+                    }
+                }
+            },
+            //局部指令，需要定义在  directives 的选项
+            directives: {
+                color: {
+                    bind: function(el, binding){
+                        el.style.backgroundColor = binding.value.color;
+                    }
+                },
+            }
+        });
+</script>

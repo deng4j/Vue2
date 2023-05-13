@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <p>key来给每个节点做一个唯一标识</p>
+        <p>key的作用主要是为了高效的更新虚拟DOM</p>
+        <hr>
+        <ul>
+            <li v-for="item in items" :key="item.id">
+                {{ item.id }}
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    items: [
+                        { 
+                            id: 1,
+                            message: 'Foo' 
+                        },
+                        { 
+                            id: 2,
+                            message: 'Bar' 
+                        }
+                    ]
+                }
+            }
+        });
+</script>

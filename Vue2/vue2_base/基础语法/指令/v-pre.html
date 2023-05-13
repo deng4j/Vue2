@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>v-pre介绍：</h1>
+        <p>显示原始信息跳过编译过程</p>
+        <p>跳过这个元素和它的子元素的编译过程。</p>
+        <p>一些静态的内容不需要编译加这个指令可以加快渲染</p>
+        <hr>
+        <p v-pre>{{ this will not be compiled }}</p> 
+        <p v-pre>{{msg}}</p> 
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    msg: 'Hello Vue.js'
+                }
+            }
+        });
+</script>

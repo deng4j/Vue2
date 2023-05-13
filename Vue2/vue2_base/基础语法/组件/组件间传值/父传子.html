@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>父组件向子组件传值：</h1>
+        <p>父组件发送的形式是以属性的形式绑定值到子组件身上。然后子组件用属性props接收</p>
+        <p>在props中使用驼峰形式，模板中需要使用短横线的形式字符串形式的模板中没有这个限制</p>
+        <hr>
+        <!-- 1、menu-item在root中嵌套着故menu-item为子组件 -->
+        <!-- 给子组件传入一个静态的值 -->
+        <menu-item title='来自父组件的静态值'></menu-item>
+        <!-- 2、需要动态的数据的时候 需要属性绑定的形式设置，此时ptitle来自父组件data中的数据 . 
+		  传的值可以是数字、对象、数组等等
+	    -->
+        <menu-item :title='ptitle' content='hello'></menu-item>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+    Vue.component('menu-item', {
+      // 3、子组件用属性props接收父组件传递过来的数据  
+      props: ['title', 'content'],
+      data: function() {
+        return {
+          msg: '子组件本身的数据'
+        }
+      },
+      template: '<div>{{msg + "----" + title + "-----" + content}}</div>'
+    });
+
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    ptitle: '动态绑定属性'
+                }
+            }
+        });
+</script>

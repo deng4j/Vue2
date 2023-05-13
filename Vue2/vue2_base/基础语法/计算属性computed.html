@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>计算属性computed：</h1>
+        <p>模板中放入太多的逻辑会让模板过重且难以维护  使用计算属性可以让模板更加的简洁</p>
+        <p>计算属性是基于它们的响应式依赖进行缓存的</p>
+        <p>computed比较适合对多个变量或者对象进行处理后返回一个结果值，也就是数多个变量中的某一个值发生了变化则我们监控的这个值也就会发生变化</p>
+        <hr>
+        <div>{{reverseString}}</div>
+        <!-- 调用methods中的方法的时候  他每次会重新调用 -->
+        <div>{{reverseMessage()}}</div>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    msg: 'Nihao',
+                    num: 100
+                }
+            },
+      methods: {
+        reverseMessage: function(){
+          console.log('methods')
+          return this.msg.split('').reverse().join('');
+        }
+      },
+      computed: {
+        //  reverseString这个是我们自己定义的名字 
+        reverseString: function(){
+          console.log('computed')
+          var total = 0;
+          //  当data 中的 num 的值改变的时候  reverseString  会自动发生计算  
+          for(var i=0;i<=this.num;i++){
+            total += i;
+          }
+          // 这里一定要有return 否则 调用 reverseString 的 时候无法拿到结果    
+          return total;
+        }
+      }
+        });
+</script>

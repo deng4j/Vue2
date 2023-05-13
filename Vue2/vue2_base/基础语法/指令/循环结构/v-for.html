@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>v-for介绍：</h1>
+        <p>用于循环的数组里面的值可以是对象，也可以是普通元素</p>
+
+        <hr>
+        <ul id="example-1">
+            <!-- 循环结构-遍历数组  
+             item 是我们自己定义的一个名字  代表数组里面的每一项  
+             items对应的是 data中的数组-->
+           <li v-for="item in items">
+             {{ item.message }}
+           </li> 
+        </ul>
+
+        <hr>
+        <ul id="example-1">
+           <li v-for="(item,index) in items">
+             index： {{index + '---' + item.message }}
+           </li> 
+        </ul>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    items: [
+                        { message: 'Foo' },
+                        { message: 'Bar' }
+                    ]
+                }
+            }
+        });
+</script>

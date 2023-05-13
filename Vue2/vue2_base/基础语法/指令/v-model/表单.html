@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <form action="">
+            <p>性别: 
+                <input id="man" type="radio" name="sex" value="1" v-model='gender'/>男
+                <input type="radio" id="woman" name="sex" value="2" v-model='gender'>女
+            </p>  
+            <p>
+                <span>爱好：</span>
+                <input type="checkbox" id="ball" value="1" v-model='hobby'>
+                <label for="ball">篮球</label>
+                <input type="checkbox" id="sing" value="2" v-model='hobby'>
+                <label for="sing">唱歌</label>
+                <input type="checkbox" id="code" value="3" v-model='hobby'>
+                <label for="code">写代码</label>
+            </p>  
+            <p>
+                <span>职业：</span>
+                <select v-model='occupation' multiple>
+                    <option value="0">请选择职业...</option>
+                    <option value="1">教师</option>
+                    <option value="2">软件工程师</option>
+                    <option value="3">律师</option>
+                </select>
+                <textarea v-model='desc'></textarea>
+            </p>        
+        </form>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    // 默认选择男
+                    gender: 1,
+                    // 默认会让当前的 value 值为 2 和 3 的复选框选中
+                    hobby: ['2', '3'],
+                    // 默认会让当前的 value 值为 2 和 3 的下拉框选中
+                    occupation: ['2', '3'],
+                    desc: 'nihao'
+                }
+            }
+        });
+</script>

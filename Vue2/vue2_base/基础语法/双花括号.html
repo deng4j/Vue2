@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 根组件 -->
+    <div id="root">
+        <!-- 双大括号会将数据解释为普通文本，而非 HTML 代码。 -->
+        <p>{{}}：用于将data中的文本数据插入到页面中</p>
+        <hr>
+        <h1>{{msg1}}</h1>
+        <h1>{{msg2}}</h1>
+    </div>
+</body>
+</html>
+
+<!-- 引入vue -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+            // 设置根组件位置
+            el:'#root',
+            // 数据返回
+            data(){
+                return {
+                    msg1:'1 hello vue2',
+                    msg2:'<p>p标签</p>',
+                }
+            }
+        });
+</script>

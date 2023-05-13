@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <style>
+        .box{
+            border:1px dashed #f0f;
+        }
+        .textColor{
+            color:#f00;
+            background-color:#eef;
+        }
+        .textSize{
+            font-size:30px;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <p>我们可以给v-bind:class 一个对象，以动态地切换class。</p>
+        <p>v-bind:class指令可以与普通的class特性共存</p>
+        <p>如果绑定的是一个对象 则键为对应的类名，值为对应data中的数据</p>
+
+        <hr>
+        <ul class="box" v-bind:class="{textColor:isColor, textSize:isSize}">
+            <li>学习Vue</li>
+            <li>学习Node</li>
+            <li>学习React</li>
+        </ul>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    isColor:true,
+                    isSize:true,
+                    activeColor:"red",
+                    activeSize:"25px",
+                }
+            }
+        });
+</script>

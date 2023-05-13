@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>v-html介绍：</h1>
+        <p>用法和v-text 相似  但是他可以将HTML片段填充到标签中</p>
+        <p>可能有安全问题, 一般只在可信任内容上使用 `v-html`，永不用在用户提交的内容上</p>
+        <hr>
+        <b v-html="html"></b>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    html: "<i>html标签在渲染的时候被解析</i>",
+                }
+            }
+        });
+</script>

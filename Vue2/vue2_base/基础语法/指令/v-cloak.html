@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-cloak</title>
+    <style type="text/css">
+        /* 
+          1、通过属性选择器 选择到 带有属性 v-cloak的标签  让他隐藏
+       */
+        [v-cloak]{
+          /* 元素隐藏    */
+          display: none;
+        }
+        </style>
+</head>
+<body>
+    <div id="root">
+        <h1>v-cloak介绍：</h1>
+        <p>v-cloak：防止页面加载时出现闪烁问题</p>
+        <p>让带有插值语法的标签添加 v-cloak 属性，在数据渲染完场之后，v-cloak属性会被自动去除，v-cloak一旦移除也就是没有这个属性了，属性选择器就选择不到该标签，对应的标签会变为可见</p>
+        <hr>
+        <div  v-cloak  >{{msg}}</div>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    msg: 'Hello Vue'
+                }
+            }
+        });
+</script>

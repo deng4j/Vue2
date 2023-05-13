@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>v-if介绍：</h1>
+        <p>多个元素 通过条件判断展示或者隐藏某个元素。</p>
+        <p>进行两个视图之间的切换</p>
+        <p>v-if是动态的向DOM树内添加或者删除DOM元素，v-if切换有一个局部编译/卸载的过程，切换过程中合适地销毁和重建内部的事件监听和子组件</p>
+        
+        <hr>
+        <span v-if="flag">
+           如果flag为true则显示,false不显示!
+        </span>
+
+        <hr>
+        <div v-if="type === 'A'">
+            A
+         </div>
+         <!-- v-else-if紧跟在v-if或v-else-if之后   表示v-if条件不成立时执行-->
+        <div v-else-if="type === 'B'">
+            B
+        </div>
+        <div v-else-if="type === 'C'">
+            C
+        </div>
+        <!-- v-else紧跟在v-if或v-else-if之后-->
+        <div v-else>
+            Not A/B/C
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    flag:true,
+                    type: 'C'
+                }
+            }
+        });
+</script>

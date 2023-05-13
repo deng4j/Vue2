@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>事件修饰符介绍：</h1>
+        <p>在事件处理程序中调用event.preventDefault()或event.stopPropagation()是非常常见的需求。</p>
+        <p>Vue 不推荐我们操作DOM为了解决这个问题，Vue.js 为v-on提供了事件修饰符</p>
+        <p>使用修饰符时，顺序很重要；相应的代码会以同样的顺序产生。因此，用 v-on:click.prevent.self 会阻止所有的点击，而 v-on:click.self.prevent 只会阻止对元素自身的点击。</p>
+        
+        <hr>
+        <h3>prevent：阻止默认事件（常用）</h3>
+		<a href="http://www.atguigu.com" @click.prevent="preventFunc">把a标签默认跳转行为禁止</a>
+        
+        <hr>
+        <h3>stop：阻止事件冒泡（常用）</h3>
+		<div class="parent" @click="parentFunc">
+			<button @click.stop="childrenFunc">stop:点我提示信息</button>
+			<!-- 修饰符可以连续写 -->
+			<!-- <a href="http://www.atguigu.com" @click.prevent.stop="showInfo">点我提示信息</a> -->
+		</div>
+
+        <hr>
+        <h3>once：事件只触发一次（常用）</h3>
+        <button @click.once="onceFunc">点我提示信息</button>
+        
+        <hr>
+        <h3>capture：使用事件的捕获模式</h3>
+        <div @click.capture="captureFunc(1)" style="width: 40px;height: 60px;background-color: bisque;">
+			div1
+			<div @click="captureFunc(2)" style="width: 40px;height: 20px;background-color:aqua;">
+				div2
+			</div>
+		</div>
+
+        <hr>
+        <h3>self：只有event.target是当前操作的元素时才触发事件</h3>
+        <div @click.self="selfFunc" style="width: 40px;height: 60px;background-color: bisque;">
+            div1
+			<div @click="selfFunc" style="width: 40px;height: 20px;background-color:aqua;">
+                div2
+            </div>
+		</div>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                }
+            },
+            methods: {
+                preventFunc:function(e){
+                    console.log(e.target)
+                },
+
+                parentFunc:function(e){
+                    console.log('parent')
+                },
+                childrenFunc:function(e){
+                    console.log('children')
+                },
+
+                onceFunc:function(e){
+                    console.log('onceFunc')
+                },
+
+                captureFunc:function(arg){
+                    console.log(arg)
+                },
+
+                selfFunc:function(e){
+                    console.log(e.target)
+                },
+            }
+        });
+</script>

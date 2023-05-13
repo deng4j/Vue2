@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>v-model双向数据绑定介绍：</h1>
+        <p>当数据发生变化的时候，视图也就发生变化</p>
+        <p>当视图发生变化的时候，数据也会跟着同步变化</p>
+        <p>限制在input、select、textarea标签，以及components中使用</p>
+        <hr>
+        <div>数据：{{msg}}</div>
+        <div>
+            更新：<input type="text" v-model='msg'>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    msg:'初始化'
+                }
+            }
+        });
+</script>

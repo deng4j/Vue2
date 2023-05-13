@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>自定义指令:</h1>
+        <p>使用自定义的指令，只需在对用的元素中，加上'v-'的前缀形成类似于内部指令'v-if'，'v-text'的形式。</p>
+        <hr>
+        <p>
+            普通输入框：<input type="text">
+        </p>
+        <p>
+            带聚焦的输入框：<input type="text" v-focus>
+        </p>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+    // 注册一个全局自定义指令 v-focus
+    Vue.directive('focus', {
+        // 当绑定元素插入到 DOM 中。 其中el为dom元素
+        inserted: function (el) {
+                // 聚焦该元素
+                el.focus();
+                console.log('focus指令触发')
+        }
+    });
+
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                }
+            }
+        });
+</script>

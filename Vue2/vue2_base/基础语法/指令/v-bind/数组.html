@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <style>
+        .box{
+            border:1px dashed #f0f;
+        }
+        .textColor{
+            color:#f00;
+            background-color:#eef;
+        }
+        .textSize{
+            font-size:30px;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <p>v-bind 中支持绑定一个数组，数组中classA和classB对应为data中的数据</p>
+        <hr>
+        <ul class="box" :class="[classA, classB]">
+            <li>学习Vue</li>
+            <li>学习Node</li>
+            <li>学习React</li>
+        </ul>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    classA:'textColor',
+                    classB:'textSize'
+                }
+            }
+        });
+</script>

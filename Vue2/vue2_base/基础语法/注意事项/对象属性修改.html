@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <p>疑惑：在 Vue 中，直接修改对象属性的值无法触发响应式。当你直接修改了对象属性的值，你会发现，只有数据改了，但是页面内容并没有改变</p>
+        <hr>
+        <div>
+            <p>
+                {{msgObj.age}}
+            </p>
+            <p>
+                {{dog.name}}
+            </p>
+            <button v-on:click='update'>修改</button>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+    function Dog(name){
+        this.name = name;
+    }
+
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    msgObj:{
+                    },
+                    dog:new Dog('大黄')
+                }
+            },
+            methods:{
+                update(){
+                    this.msgObj.age=20
+                    this.dog.name='旺财'
+                }
+            }
+        });
+</script>

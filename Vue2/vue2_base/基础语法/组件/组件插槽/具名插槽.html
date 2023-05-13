@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>具名插槽：</h1>
+        <p>具有名字的插槽</p>
+        <p>使用`slot`中的"name"属性绑定元素</p>
+        <hr>
+        <base-layout>
+            <!-- 2、 通过slot属性来指定, 这个slot的值必须和下面slot组件得name值对应上
+                        如果没有匹配到 则放到匿名的插槽中   --> 
+            <p slot='strong'>标题信息</p>
+            <p>主要内容1</p>
+            <p>主要内容2</p>
+            <p slot='em'>底部信息信息</p>
+        </base-layout>
+        <base-layout>
+            <!-- 注意点：template临时的包裹标签最终不会渲染到页面上     -->  
+            <template slot='strong'>
+                <p>标题信息1</p>
+                <p>标题信息2</p>
+            </template>
+            <p>主要内容1</p>
+            <p>主要内容2</p>
+            <template slot='em'>
+                <p>底部信息信息1</p>
+                <p>底部信息信息2</p>
+            </template>
+        </base-layout>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+    // 具名插槽
+    Vue.component('base-layout', {
+      template: `
+        <div>
+          <strong>
+			<!-- 1、 使用 <slot> 中的 "name" 属性绑定元素指定当前插槽的名字 -->
+            <slot name='strong'></slot>
+          </strong>
+          <main>
+            <slot></slot>
+          </main>
+          <em>
+			<!-- 注意：具名插槽的渲染顺序，完全取决于模板，而不是取决于父组件中元素的顺序 -->
+            <slot name='em'></slot>
+          </em>
+        </div>
+      `
+    });
+
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                }
+            }
+        });
+</script>

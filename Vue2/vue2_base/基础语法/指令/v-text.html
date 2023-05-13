@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-text</title>
+</head>
+<body>
+    <div id="root">
+        <h1>v-text介绍：</h1>
+        <p>v-text：v-text指令用于将数据填充到标签中，作用于插值表达式类似，但是没有闪动问题</p>
+        <p>如果数据中有HTML标签会将html标签一并输出</p>
+        <p>注意：此处为单向绑定，数据对象上的值改变，插值会发生变化；但是当插值发生变化并不会影响数据对象的值</p>
+        <hr>
+        <!-- 注意:在指令中不要写插值语法  直接写对应的变量名称在v-text中赋值的时候不要在写插值语法
+		一般属性中不加 {{}}  直接写 对应 的数据名  -->
+        <p v-text="msg"></p>
+        <p>
+            <!-- Vue中只有在标签的内容中才用插值语法 -->
+            {{msg}}
+        </p>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    msg: 'Hello Vue'
+                }
+            }
+        });
+</script>
