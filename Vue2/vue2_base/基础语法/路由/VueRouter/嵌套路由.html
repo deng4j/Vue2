@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>嵌套路由：</h1>
+        <p>当我们进行路由的时候显示的组件中还有新的子级路由链接以及内容。</p>
+        <hr>
+        <router-link to="/user">User</router-link>
+        <router-link to="/login">Login</router-link>
+        <router-view></router-view>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
+<script>
+    var User = { template: "<div>This is User</div>" }
+    //Login组件中的模板代码里面包含了子级路由链接以及子级路由的占位符
+    var Login = { template: `<div>
+        <h1>This is Login</h1>
+        <br>
+        <router-link to="/login/account">账号密码登录</router-link>
+        <router-link to="/login/phone">扫码登录</router-link>
+        <!-- 子路由组件将会在router-view中显示 -->
+        <router-view></router-view>
+        </div>` }
+    
+    //定义两个子级路由组件
+    var account = { template:"<div>账号：<input><br>密码：<input></div>"};
+    var phone = { template:"<h1>扫我二维码</h1>"};
+
+    var myRouter = new VueRouter({
+        //routes是路由规则数组
+        routes: [
+            { path:"/",redirect:"/user"},
+            { path: "/user", component: User },
+            { 
+                path: "/login", 
+                component: Login,
+                //通过children属性为/login添加子路由规则
+                children:[
+                    { path: "/login/account", component: account },
+                    { path: "/login/phone", component: phone },
+                ]
+            }
+        ]
+    })
+
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                }
+            },
+            router:myRouter
+        });
+</script>

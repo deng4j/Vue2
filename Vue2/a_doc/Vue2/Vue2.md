@@ -90,19 +90,3 @@ Vue实例从创建 到销毁的过程 ，这些过程中会伴随着一些函数
 ![522a15811dbc4a4390a3842b19882bda](assist/522a15811dbc4a4390a3842b19882bda.png)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[创建第一个 Vue 组件 - 学习 Web 开发 | MDN (mozilla.org)](https://developer.mozilla.org/zh-CN/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Vue_first_component)

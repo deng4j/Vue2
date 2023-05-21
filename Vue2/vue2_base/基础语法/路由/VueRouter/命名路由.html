@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>命名路由：</h1>
+        <p>给路由取别名</p>
+        <hr>
+        <router-link :to="{ name:'user' , params: {id:123} }">User</router-link>
+        <router-view></router-view>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
+<script>
+    var User = { 
+        template:"<div>用户：{{$route.params.id}}</div>"
+    }
+
+    var myRouter = new VueRouter({
+        //routes是路由规则数组
+        routes: [
+            //通过name属性为路由添加一个别名
+            { path: "/user/:id", component: User, name:"user"},
+        ]
+    })
+
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                }
+            },
+            router:myRouter
+        });
+</script>

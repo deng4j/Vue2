@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>router介绍：</h1>
+        <p>前端路由的基本概念：根据不同的事件来显示不同的页面内容，即事件与事件处理函数之间的对应关系。</p>
+        <p>前端路由主要做的事情就是监听事件并分发执行事件处理函数</p>
+        <p>前端路由是基于hash值的变化进行实现的（比如点击页面中的菜单或者按钮改变URL的hash值，根据hash值的变化来控制组件的切换）</p>
+        <p>核心实现依靠一个事件，即监听hash值变化的事件：window.onhashchange</p>
+        <hr>
+        <div>
+            <!-- 被 vue 实例控制的 div 区域 -->
+            <!-- 切换组件的超链接 -->
+            <a href="#/zhuye">主页</a> 
+            <a href="#/keji">科技</a> 
+            <a href="#/caijing">财经</a>
+            <a href="#/yule">娱乐</a>
+
+            <!-- 根据 :is 属性指定的组件名称，把对应的组件渲染到 component 标签所在的位置 -->
+            <!-- 可以把 component 标签当做是【组件的占位符】 -->
+            <component :is="comName"></component>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+        // #region 定义需要被切换的 4 个组件
+        // 主页组件
+        const zhuye = {
+            template: '<h1>主页信息</h1>'
+        }
+
+        // 科技组件
+        const keji = {
+            template: '<h1>科技信息</h1>'
+        }
+
+        // 财经组件
+        const caijing = {
+            template: '<h1>财经信息</h1>'
+        }
+
+        // 娱乐组件
+        const yule = {
+            template: '<h1>娱乐信息</h1>'
+        }
+
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    comName: 'zhuye'
+                }
+            },
+            // 注册私有组件
+            components: {
+            zhuye,
+            keji,
+            caijing,
+            yule
+            }
+        });
+
+    // 监听 window 的 onhashchange 事件，根据获取到的最新的 hash 值，切换要显示的组件的名称
+    window.onhashchange = function() {
+            // 通过 location.hash 获取到最新的 hash 值
+            console.log(location.hash);
+            switch(location.hash.slice(1)){
+            case '/zhuye':
+                vm.comName = 'zhuye'
+            break
+            case '/keji':
+                vm.comName = 'keji'
+            break
+            case '/caijing':
+                vm.comName = 'caijing'
+            break
+            case '/yule':
+                vm.comName = 'yule'
+            break
+            }
+        }
+</script>

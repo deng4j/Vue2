@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>Vue Router简介：</h1>
+        <p>Vue.js官方提供的路由管理器。是一个功能更加强大的前端路由器</p>
+        <p>Vue Router和Vue.js非常契合，可以一起方便的实现SPA(single page web application,单页应用程序)应用程序的开发。</p>
+        <p>Vue Router依赖于Vue，所以需要先引入Vue，再引入Vue Router</p>
+        <hr>
+        <!-- 添加路由链接:默认会被渲染为a标签，to属性默认被渲染为href属性，to属性的值会被渲染为#开头的hash地址 -->
+        <router-link to="/user">User</router-link>
+        <router-link to="/login">Login</router-link>
+        <router-link to="/">/</router-link>
+        <!-- 添加路由填充位（路由占位符） -->
+        <router-view></router-view>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
+<script>
+    // 定义路由组件
+    var User = { template:"<div>This is User</div>" }
+    var Login = { template:"<div>This is Login</div>" }
+
+    //配置路由规则并创建路由实例
+    var myRouter = new VueRouter({
+        //routes是路由规则数组
+        routes:[
+            //每一个路由规则都是一个对象，对象中至少包含path和component两个属性
+            //path表示  路由匹配的hash地址，component表示路由规则对应要展示的组件对象
+            {path:"/user",component:User},
+            {path:"/login",component:Login},
+            //路由重定向
+            { path:"/",redirect:"/user"},
+        ]
+    })
+
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                }
+            },
+            //通过router属性挂载路由对象
+            router:myRouter
+        });
+</script>

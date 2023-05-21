@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>导航：</h1>
+        <p>声明式导航：通过点击链接的方式实现的导航</p>
+        <p>编程式导航：调用js的api方法实现导航</p>
+        <hr>
+        <button @click="func">跳转c</button>
+        <button @click="func1">跳转c1</button>
+        <router-view></router-view>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
+<script>
+    var C = { template:"<div>组件c</div>"}
+    var C1 = { template:"<div>id：{{$route.params.id}}</div>"}
+
+    var myRouter = new VueRouter({
+        //routes是路由规则数组
+        routes: [
+            { path: "/c", component: C},
+            { path: "/c1/:id", component: C1,name: 'c1'},
+        ]
+    })
+
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                }
+            },
+            methods:{
+                func(){
+                    myRouter.push('/c')
+                },
+                func1(){
+                    myRouter.push({ name: 'c1', params: { id: '2' } })
+                },
+            },
+            router:myRouter
+        });
+</script>
