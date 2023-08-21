@@ -18,6 +18,9 @@
         <hr>
         <p>当点击enter或者space时  时调用 `vm.alertMe()`</p>
         <input type="text" v-on:keyup.enter.space="alertMe" >
+
+        <hr>
+        <input type="button" value="回车" v-on:keyup.enter="alertMe">
     </div>
 </body>
 </html>

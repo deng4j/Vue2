@@ -8,7 +8,7 @@
 </head>
 <body>
     <div id="root">
-        <router-link to="/user/1">User</router-link>
+        <router-link to="/user">User</router-link>
         <router-link to="/login">Login</router-link>
         <router-view></router-view>
     </div>
@@ -27,7 +27,7 @@
     routes: [
         //通过/:参数名  的形式传递参数 
         //如果props设置为对象，则传递的是对象中的数据给组件
-        { path: "/user/:id", component: User,props:{username:"jack",pwd:123} },
+        { path: "/user", component: User,props:{username:"jack",pwd:123} },
     ]
 })
 

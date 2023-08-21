@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+
+<body>
+    <div id="root">
+        <h1>深度监听：</h1>
+        <p>1.第一个值handle：其值是一个回调函数，就是监听对象对话的时候需要执行的函数</p>
+        <p>2.deep：其值true 或者 false，是否深度监听（一般监听是不能监听到对象属性值变化的，数组除外）</p>
+        <p>3.immediate：其值 true 或者 false，是否以当前的初始值执行handle函数（当值第一次绑定时，不会执行监听函数，只有值发生改变时才会执行。如果我们需要在最初绑定值的时候也执行函数，则就需要用到immediate属性。）</p>
+        <hr>
+        <p>funnname:{{fullName}}</p>
+        <input type="button" value="点击异步改变值" @click="asyncChange"/>
+        <div>{{fullName}}</div>
+    </div>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: '#root',
+        data() {
+            return {
+                firstName: 'Jim',
+                fullName: null
+            }
+        },
+        methods:{
+            asyncChange:function(){
+                const fetchPromise = fetch('https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json');
+
+                console.log("已发送...");
+
+                fetchPromise.then( response => {
+                    console.log(`已收到响应：${response.status}`);
+                    this.firstName = "jerry";
+                });
+            }
+        },
+        watch: {
+            firstName: {
+                handler(newVal,oldVal) {
+                    console.log(newVal+'----'+oldVal)
+                    this.fullName = newVal;
+                },
+                deep:true
+            }
+        }
+    });
+</script>

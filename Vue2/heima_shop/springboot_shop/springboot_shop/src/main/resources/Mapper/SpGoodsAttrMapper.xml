@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot_shop.mapper.SpGoodsAttrMapper">
+
+    <resultMap type="com.example.springboot_shop.domain.SpGoodsAttr" id="SpGoodsAttrResult">
+            <result property="attrId" column="attr_id"/>
+            <result property="id" column="id"/>
+            <result property="addPrice" column="add_price"/>
+            <result property="attrValue" column="attr_value"/>
+            <result property="goodsId" column="goods_id"/>
+    </resultMap>
+
+</mapper>

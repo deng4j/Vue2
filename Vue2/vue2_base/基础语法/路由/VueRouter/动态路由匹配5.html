@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <router-link to="/user/1">User1</router-link>
+        <router-link to="/user/2">User2</router-link>
+        <router-link to="/register">Register</router-link>
+        <router-view></router-view>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
+<script>
+    var User = { 
+        props:["username","pwd","id"],
+        template:`<div>
+            用户：{{id}} -> {{username}}---{{pwd}}
+            <button @click="goRegister">跳转到注册页面</button>
+            </div>`,
+        methods: {
+          goRegister() {
+            this.$router.push('/register')
+          }
+        },
+    }
+
+    const Register = {
+        template: `<div>
+          <h1>Register 组件</h1>
+          <button @click="goBack">后退</button>
+        </div>`,
+        methods: {
+          goBack() {
+            this.$router.go(-1)
+          }
+        }
+      }
+
+    var myRouter = new VueRouter({
+        //routes是路由规则数组
+        routes: [
+            //通过/:参数名  的形式传递参数 
+            //如果props设置为函数，则通过函数的第一个参数获取路由对象
+            //并可以通过路由对象的params属性获取传递的参数
+            { path: "/user/:id", component: User,props:(route)=>{
+                return {username:"jack",pwd:123,id:route.params.id}
+                } 
+            },
+            ,
+          { path: '/register', component: Register }
+        ]
+    })
+
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                }
+            },
+            router:myRouter
+        });
+</script>

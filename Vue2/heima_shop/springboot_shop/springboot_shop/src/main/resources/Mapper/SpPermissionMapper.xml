@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot_shop.mapper.SpPermissionMapper">
+
+    <resultMap type="com.example.springboot_shop.domain.SpPermission" id="SpPermissionResult">
+            <result property="psId" column="ps_id"/>
+            <result property="psA" column="ps_a"/>
+            <result property="psC" column="ps_c"/>
+            <result property="psLevel" column="ps_level"/>
+            <result property="psName" column="ps_name"/>
+            <result property="psPid" column="ps_pid"/>
+    </resultMap>
+
+</mapper>

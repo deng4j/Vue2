@@ -21,6 +21,7 @@
             <button v-on:click='handle2(123, 456, $event)'>点击2</button>
             <button v-on:click='num++'>点击3</button>
             <button @click='num++'>点击4</button>
+            <button @click='m1();m2()'>点击5</button>
         </div>
     </div>
 </body>
@@ -42,6 +43,12 @@
                 handle2: function(p, p1, event) {
                     console.log(p, p1,event.target.innerHTML)
                     this.num++;
+                },
+                m1(){
+                    console.log("m1");
+                },
+                m2(){
+                    console.log("m2");
                 }
             }
         });

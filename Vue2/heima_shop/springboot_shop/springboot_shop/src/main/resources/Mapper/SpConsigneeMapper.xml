@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot_shop.mapper.SpConsigneeMapper">
+
+    <resultMap type="com.example.springboot_shop.domain.SpConsignee" id="SpConsigneeResult">
+            <result property="userId" column="user_id"/>
+            <result property="cgnId" column="cgn_id"/>
+            <result property="cgnAddress" column="cgn_address"/>
+            <result property="cgnCode" column="cgn_code"/>
+            <result property="cgnName" column="cgn_name"/>
+            <result property="cgnTel" column="cgn_tel"/>
+            <result property="deleteTime" column="delete_time"/>
+    </resultMap>
+
+</mapper>

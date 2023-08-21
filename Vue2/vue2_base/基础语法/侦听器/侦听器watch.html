@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+
+<body>
+    <div id="root">
+        <h1>侦听器watch：</h1>
+        <p>使用watch来响应数据的变化</p>
+        <p>一般用于异步或者开销较大的操作</p>
+        <p>watch 中的属性 一定是data 中 已经存在的数据 </p>
+        <p>当需要监听一个对象的改变时，普通的watch方法无法监听到对象内部属性的改变，只有data中的数据才能够监听到变化，此时就需要deep属性对对象进行深度监听</p>
+        <hr>
+        <div>
+            名：<input type="text" v-model='firstName'>
+        </div>
+        <div>
+            姓：<input type="text" v-model='lastName'>
+        </div>
+        <div>{{fullName}}</div>
+    </div>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: '#root',
+        data() {
+            return {
+                firstName: 'Jim',
+                lastName: 'Green',
+                fullName: null
+            }
+        },
+        watch: {
+            // 注意：这里firstName对应着data中的firstName 
+            // 当 firstName 值 改变的时候会自动触发watch
+            firstName: function(newVal,oldVal) {
+                console.log(newVal+'----'+oldVal)
+                this.fullName = newVal + ' ' + this.lastName;
+            },
+            //   注意：  这里 lastName 对应着data 中的 lastName 
+            lastName: function(val) {
+                this.fullName = this.firstName + ' ' + val;
+            }
+        }
+    });
+</script>

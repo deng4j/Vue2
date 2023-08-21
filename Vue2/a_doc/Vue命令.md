@@ -52,15 +52,6 @@ npm i @vue/cli-service
 cnpm install vue-cli -g
 ```
 
-# 其他组件安装命令
-
-## less
-
-```js
-npm install less-loader@4.1.0 --save -D
-npm install less@3.0.4 --save -D
-```
-
 # 命令
 
 - vue-cli创建vue项目，使用vue ui图形化界面来进行创建文件以及安装一些我们需要的依赖等。

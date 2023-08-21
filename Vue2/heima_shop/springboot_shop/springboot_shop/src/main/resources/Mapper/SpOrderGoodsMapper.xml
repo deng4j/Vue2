@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot_shop.mapper.SpOrderGoodsMapper">
+
+    <resultMap type="com.example.springboot_shop.domain.SpOrderGoods" id="SpOrderGoodsResult">
+            <result property="goodsId" column="goods_id"/>
+            <result property="orderId" column="order_id"/>
+            <result property="id" column="id"/>
+            <result property="goodsNumber" column="goods_number"/>
+            <result property="goodsPrice" column="goods_price"/>
+            <result property="goodsTotalPrice" column="goods_total_price"/>
+    </resultMap>
+
+</mapper>

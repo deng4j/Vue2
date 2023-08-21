@@ -13,7 +13,7 @@
         <p>局部指令只能在当前组件里面使用</p>
         <p>当全局指令和局部指令同名时以局部指令为准</p>
         <hr>
-        <input type="text" v-color='colorObj'>
+        <input type="text" v-colors='colorObj'>
     </div>
 </body>
 </html>
@@ -30,7 +30,7 @@
             },
             //局部指令，需要定义在  directives 的选项
             directives: {
-                color: {
+                colors: {
                     bind: function(el, binding){
                         el.style.backgroundColor = binding.value.color;
                     }

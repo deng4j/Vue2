@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot_shop.mapper.SpReport1Mapper">
+
+    <resultMap type="com.example.springboot_shop.domain.SpReport1" id="SpReport1Result">
+            <result property="id" column="id"/>
+            <result property="rp1Area" column="rp1_area"/>
+            <result property="rp1Date" column="rp1_date"/>
+            <result property="rp1UserCount" column="rp1_user_count"/>
+    </resultMap>
+
+</mapper>

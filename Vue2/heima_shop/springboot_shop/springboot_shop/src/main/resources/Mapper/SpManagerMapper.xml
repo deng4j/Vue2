@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot_shop.mapper.SpManagerMapper">
+
+    <resultMap type="com.example.springboot_shop.domain.SpManager" id="SpManagerResult">
+            <result property="mgId" column="mg_id"/>
+            <result property="mgEmail" column="mg_email"/>
+            <result property="mgMobile" column="mg_mobile"/>
+            <result property="mgName" column="mg_name"/>
+            <result property="mgPwd" column="mg_pwd"/>
+            <result property="mgState" column="mg_state"/>
+            <result property="mgTime" column="mg_time"/>
+            <result property="roleId" column="role_id"/>
+    </resultMap>
+
+</mapper>

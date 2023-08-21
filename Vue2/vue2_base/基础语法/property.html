@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <h1>实例 property：</h1>
+        <p>$符号只是Vue属性的命名规则，为了区分普通变量属性，避免我们自己声明或者添加自定义属性导致覆盖</p>
+        <hr>
+        {{sex}}
+        <hr>
+        <div v-bind:style="{fontSize: postFontSize+'px'}">hello</div>
+        <my-component @enlarge-text="onEnlargeText"></my-component>
+    </div>
+</body>
+</html>
+
+<!-- 引入vue -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+    // 自定义属性挂载到Vue中
+    Vue.prototype.$sex='男'
+
+    // this.$emit()方法用于触发一个组件实例上的事件。
+    Vue.component('my-component', {
+        template: `<div> 
+                <button v-on:click="$emit('enlarge-text')">
+                    Enlarge text
+                </button>
+            </div>`
+    })
+
+    const vm = new Vue({
+            // 设置根组件位置
+            el:'#root',
+            // 数据返回
+            data(){
+                return {
+                    // 获取自定义属性
+                    sex:this.$sex,
+                    postFontSize: 10
+                }
+            } ,
+            methods: {
+                onEnlargeText: function () {
+                    this.postFontSize +=5;
+                    console.log(this.postFontSize)
+                }
+            }
+        });
+</script>

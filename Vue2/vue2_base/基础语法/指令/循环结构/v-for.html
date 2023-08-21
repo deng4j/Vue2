@@ -27,6 +27,16 @@
              index： {{index + '---' + item.message }}
            </li> 
         </ul>
+        <hr>
+        <table border="1">
+            <tr v-for="(item,index) in items">
+                <td>{{item.message}}</td>
+            </tr>
+        </table>
+        <hr>
+        <li v-for="i in 4">
+            <td>{{i}}</td>
+        </li>
     </div>
 </body>
 </html>
