@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <p>外部js使用vue组件的函数，使用VUE 提供的 REF 属性</p>
+        <hr>
+        <button ref="show">点我</button>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                }
+            },
+            mounted(){
+                this.$refs.show.onclick = ()=>{
+                console.log(this.show())
+            }
+            },
+            methods:{
+                show(){
+                    alert('vue')
+                }
+            }
+            
+        });
+</script>
