@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <div id="root">
+        <h1>父组件向子组件传值：</h1>
+        <button @click="change(num++)">do</button>
+        <menu-item :attrs='fatherAttrs'></menu-item>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+    Vue.component('menu-item', {
+      // 3、子组件用属性props接收父组件传递过来的数据  
+      props: {
+        attrs:Object
+      },
+      data: function() {
+        return {
+          dataAttrs: '子组件本身的数据'
+        }
+      },
+      mounted () {
+        this.dataAttrs= this.attrs; //用props中的对象对data中的对象赋初始值
+      },
+      watch: {
+         // 监听到数据然后赋值
+        attrs:{
+          // 监听数据发生变化的处理函数
+          handler(newV) {
+            this.dataAttrs = JSON.parse(JSON.stringify(newV));//将监听到修改的值赋予到dataAttrs中
+          },
+          // 是否开启深度监听，由于我们上面props中是一个Object对象，所以需要开启深度监听功能
+          deep: true
+        },
+      },
+      template: '<div>{{dataAttrs}}</div>'
+    });
+
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                  fatherAttrs: {aAttr: 'A', bAttr: 'B'},
+                  num:1
+                }
+            },
+            methods:{
+              change(num){
+                this.fatherAttrs={aAttr: 'A', bAttr: num}
+              }
+            }
+        });
+</script>
