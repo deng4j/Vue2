@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <style>
+        body,
+        html,
+        #container {
+            overflow: hidden;
+            width: 90%;
+            height: 90%;
+            margin: 0;
+            font-family: "微软雅黑";
+            float: right;
+        }
+
+        #searchID {
+            float: left;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div>坐标：{{location}}</div>  
+    </div>
+    <div id="container"></div>
+    
+    <div id="searchID">
+        <div id="r-result">请输入:<input type="text" id="suggestId" size="20" value="百度" style="width:150px;" /></div>
+        <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+<link href="./css/frame/DrawingManager.min.css" rel="stylesheet">
+<script src="./js/frame/DrawingManager.min.js"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=1.0&type=webgl&ak=3fRp7bc8DmNKrBecBLObuiHrzgieSjvY"></script>
+
+<script>
+   const vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    location:''
+                }
+            },
+            mounted(){
+                var map = new BMapGL.Map('container');
+                map.centerAndZoom('郴州', 8);
+                map.enableScrollWheelZoom(true);
+                map.addOverlay(new BMapGL.Marker(new BMapGL.Point(113.01226185067546,25.94314723395927)));
+
+                // 标记
+                var markerList = []
+
+                map.addEventListener('click', function (e) {
+                    vm.location=e.latlng.lng + ',' + e.latlng.lat
+
+                    // 清除指定标记物
+                    markerList.forEach(element => {
+                        map.removeOverlay(element)
+                    });
+
+                    var marker = new BMapGL.Marker(e.latlng)
+                    markerList.push(marker)
+                    map.addOverlay(marker);    //添加标注
+                });
+
+                
+                // 搜索功能
+                function G(id) {
+                    return document.getElementById(id);
+                }
+
+                var ac = new BMapGL.Autocomplete(    //建立一个自动完成的对象
+                    {"input" : "suggestId"
+                    ,"location" : map
+                });
+
+                ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+                var str = "";
+                    var _value = e.fromitem.value;
+                    var value = "";
+                    if (e.fromitem.index > -1) {
+                        value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+                    }    
+                    str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+                    
+                    value = "";
+                    if (e.toitem.index > -1) {
+                        _value = e.toitem.value;
+                        value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+                    }    
+                    str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+                    G("searchResultPanel").innerHTML = str;
+                });
+
+                var myValue;
+                ac.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+                var _value = e.item.value;
+                    myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+                    G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+                    setPlace();
+                });
+
+                function setPlace(){
+                    
+                    map.clearOverlays();    //清除地图上所有覆盖物
+                    function myFun(){
+                        var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+                        map.centerAndZoom(pp, 18);
+                        map.addOverlay(new BMapGL.Marker(pp));    //添加标注
+
+                        vm.location=pp.lng + ',' + pp.lat
+                    }
+                
+                    
+                    var local = new BMapGL.LocalSearch(
+                        map, 
+                        {renderOptions:{map: map},// 详情
+                        onSearchComplete: myFun // 回调方法
+                        }, 
+                    );
+                    local.search(myValue);
+                }
+
+            }
+        });
+
+
+</script>
